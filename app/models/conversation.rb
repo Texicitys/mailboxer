@@ -115,6 +115,15 @@ class Conversation < ActiveRecord::Base
   def count_messages
     Message.conversation(self).count
   end
+  
+  #Return the subject if it existe, or the first words otherwise
+  def subject_to_show
+    if self.subject
+      self.subject
+    elsif
+      truncate(self.first_message.body)
+    end
+  end
 
   #Returns true if the messageable is a participant of the conversation
   def is_participant?(participant)
