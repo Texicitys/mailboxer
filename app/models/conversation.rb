@@ -116,9 +116,11 @@ class Conversation < ActiveRecord::Base
     Message.conversation(self).count
   end
   
+  include ActionView::Helpers::TextHelper
+
   #Return the subject if it existe, or the first words otherwise
   def subject_to_show
-    if self.subject
+    unless self.subject.empty?
       self.subject
     else
       truncate(self.first_message.body)
