@@ -14,6 +14,10 @@ describe "Mailboxer::Models::Messageable through User" do
   it "should be able to send a message" do
     assert @entity1.send_message(@entity2,"Body","Subject")
   end
+
+  it "should be able to send a message without subject" do
+    assert @entity1.send_message(@entity2,"Body")
+  end
   
   it "should be able to reply to sender" do
     @receipt = @entity1.send_message(@entity2,"Body","Subject")
