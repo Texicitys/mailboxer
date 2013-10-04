@@ -1,4 +1,4 @@
-I juste take the gem mailboxer and I remove the notifications. The table is now nammed message (and not notification).
+I juste take the gem mailboxer and I remove the notifications. The table is now nammed messages (and not notifications).
 
 
 # Mailboxer 0.10.x [![](https://secure.travis-ci.org/ging/mailboxer.png)](http://travis-ci.org/ging/mailboxer) [![Gem Version](https://badge.fury.io/rb/mailboxer.png)](http://badge.fury.io/rb/mailboxer) [![](https://gemnasium.com/ging/mailboxer.png)](https://gemnasium.com/ging/mailboxer)
