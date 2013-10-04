@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
   attr_accessible :body, :subject, :global, :expires if Mailboxer.protected_attributes?
 
   belongs_to :sender, :polymorphic => :true
-  belongs_to :notified_object, :polymorphic => :true
+  #belongs_to :notified_object, :polymorphic => :true
   has_many :receipts, :dependent => :destroy
 
   validates_presence_of :body#, :subject
@@ -23,9 +23,9 @@ class Message < ActiveRecord::Base
   scope :recipient, lambda { |recipient|
     joins(:receipts).where('receipts.receiver_id' => recipient.id,'receipts.receiver_type' => recipient.class.base_class.to_s)
   }
-  scope :with_object, lambda { |obj|
-    where('notified_object_id' => obj.id,'notified_object_type' => obj.class.to_s)
-  }
+  #scope :with_object, lambda { |obj|
+  #  where('notified_object_id' => obj.id,'notified_object_type' => obj.class.to_s)
+  #}
   scope :not_trashed, lambda {
     joins(:receipts).where('receipts.trashed' => false)
   }

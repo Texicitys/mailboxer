@@ -117,12 +117,13 @@ class Conversation < ActiveRecord::Base
     self.receipts_for(participant).count != 0
   end
 
+
 	#Adds a new participant to the conversation
 	def add_participant(participant)
 		messages = self.messages
 		messages.each do |message|
 		  receipt = Receipt.new
-		  #receipt.notification = message
+		  receipt.message = message
 		  receipt.is_read = false
 		  receipt.receiver = participant
 		  receipt.mailbox_type = 'inbox'

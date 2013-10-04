@@ -1,7 +1,8 @@
 class Receipt < ActiveRecord::Base
   attr_accessible :trashed, :is_read, :deleted if Mailboxer.protected_attributes?
 
-  belongs_to :message, :validate => true, :autosave => true
+  #belongs_to :notification, :validate => true, :autosave => true
+  belongs_to :message, :validate => true, :autosave => true#, :foreign_key => "message_id"
   belongs_to :receiver, :polymorphic => :true
   #belongs_to :message, :foreign_key => "notification_id"
 
@@ -13,10 +14,12 @@ class Receipt < ActiveRecord::Base
   #Notifications Scope checks type to be nil, not Notification because of STI behaviour
   #with the primary class (no type is saved)
   #scope :notifications_receipts, lambda { joins(:notification).where('notifications.type' => nil) }
-  scope :messages_receipts, lambda { joins(:message).where('messages.type' => Message.to_s) }
-  #scope :notification, lambda { |notification|
-  #  where(:notification_id => notification.id)
-  #}
+  #scope :messages_receipts, lambda { joins(:message).where('messages.type' => Message.to_s) }
+  scope :messages_receipts, lambda { joins(:message) }
+
+  scope :message, lambda { |message|
+    where(:message_id => message.id)
+  }
   scope :conversation, lambda { |conversation|
     joins(:message).where('messages.conversation_id' => conversation.id)
   }
@@ -134,7 +137,7 @@ class Receipt < ActiveRecord::Base
 
   #Returns the conversation associated to the receipt if the notification is a Message
   def conversation
-    message.conversation if message.is_a? Message
+    message.conversation #if message.is_a? Message
   end
 
   #Returns if the participant have read the message

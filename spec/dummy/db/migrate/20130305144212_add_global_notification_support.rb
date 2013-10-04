@@ -5,7 +5,7 @@ class AddGlobalNotificationSupport < ActiveRecord::Migration
       t.boolean :global
       t.datetime :expires
     end
-    Notification.update_all ["global = ?", false]
+    #Notification.update_all ["global = ?", false]
   end
 
 end
