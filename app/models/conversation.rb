@@ -4,13 +4,13 @@ class Conversation < ActiveRecord::Base
   has_many :messages, :dependent => :destroy
   has_many :receipts, :through => :messages
 
-  validates_presence_of :subject
+  #validates_presence_of :subject
 
   before_validation :clean
 
   scope :participant, lambda {|participant|
     select('DISTINCT conversations.*').
-      where('notifications.type'=> Message.name).
+      #where('notifications.type'=> Message.name).
       order("conversations.updated_at DESC").
       joins(:receipts).merge(Receipt.recipient(participant))
   }
@@ -122,7 +122,7 @@ class Conversation < ActiveRecord::Base
 		messages = self.messages
 		messages.each do |message|
 		  receipt = Receipt.new
-		  receipt.notification = message
+		  #receipt.notification = message
 		  receipt.is_read = false
 		  receipt.receiver = participant
 		  receipt.mailbox_type = 'inbox'

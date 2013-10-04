@@ -17,7 +17,7 @@ module Mailboxer
   @@email_method = :mailboxer_email
   mattr_accessor :name_method
   @@name_method = :name
-  mattr_accessor :notification_mailer
+  #mattr_accessor :notification_mailer
   mattr_accessor :message_mailer
 
   class << self

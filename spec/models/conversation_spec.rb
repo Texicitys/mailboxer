@@ -9,8 +9,8 @@ describe Conversation do
     @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body 1")
     @receipt3 = @entity1.reply_to_all(@receipt2,"Reply body 2")
     @receipt4 = @entity2.reply_to_all(@receipt3,"Reply body 3")
-    @message1 = @receipt1.notification
-    @message4 = @receipt4.notification
+    @message1 = @receipt1.message
+    @message4 = @receipt4.message
     @conversation = @message1.conversation
   end
 
@@ -79,8 +79,8 @@ describe Conversation do
 
   describe "scopes" do
     let(:participant) { FactoryGirl.create(:user) }
-    let!(:inbox_conversation) { @entity1.send_message(participant, "Body", "Subject").notification.conversation }
-    let!(:sentbox_conversation) { participant.send_message(@entity1, "Body", "Subject").notification.conversation }
+    let!(:inbox_conversation) { @entity1.send_message(participant, "Body", "Subject").message.conversation }
+    let!(:sentbox_conversation) { participant.send_message(@entity1, "Body", "Subject").message.conversation }
 
 
     describe ".participant" do
@@ -103,7 +103,7 @@ describe Conversation do
 
     describe ".trash" do
       it "finds trash conversations with receipts for participant" do
-        trashed_conversation = @entity1.send_message(participant, "Body", "Subject").notification.conversation
+        trashed_conversation = @entity1.send_message(participant, "Body", "Subject").message.conversation
         trashed_conversation.move_to_trash(participant)
 
         Conversation.trash(participant).should == [trashed_conversation]
@@ -113,7 +113,7 @@ describe Conversation do
     describe ".unread" do
       it "finds unread conversations with receipts for participant" do
         [sentbox_conversation, inbox_conversation].each {|c| c.mark_as_read(participant) }
-        unread_conversation = @entity1.send_message(participant, "Body", "Subject").notification.conversation
+        unread_conversation = @entity1.send_message(participant, "Body", "Subject").message.conversation
 
         Conversation.unread(participant).should == [unread_conversation]
       end

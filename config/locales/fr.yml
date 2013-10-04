@@ -1,0 +1,7 @@
+en:
+  mailboxer:
+    message_mailer:
+      subject_new: "Mailboxer nouveau message: %{subject}"
+      subject_reply: "Mailboxer nouvelle réponse: %{subject}"
+    notification_mailer:
+      subject: "Mailboxer nouvelle notification: %{subject}"

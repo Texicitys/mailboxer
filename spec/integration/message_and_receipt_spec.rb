@@ -12,7 +12,7 @@ describe "Messages And Receipts" do
       
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
-        @message1 = @receipt1.notification
+        @message1 = @receipt1.message
       end
       
       it "should create proper message" do
@@ -24,7 +24,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity1).notification(@message1).first
+        mail = Receipt.recipient(@entity1).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -32,7 +32,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity2).notification(@message1).first
+        mail = Receipt.recipient(@entity2).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -54,8 +54,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_sender(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -67,7 +67,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -75,7 +75,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -100,8 +100,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -113,7 +113,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -121,7 +121,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -145,8 +145,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_conversation(@receipt1.conversation,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -158,7 +158,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -166,7 +166,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -198,7 +198,7 @@ describe "Messages And Receipts" do
       
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
-        @message1 = @receipt1.notification
+        @message1 = @receipt1.message
       end
       
       it "should create proper message" do
@@ -210,7 +210,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity1).notification(@message1).first
+        mail = Receipt.recipient(@entity1).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -218,7 +218,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity2).notification(@message1).first
+        mail = Receipt.recipient(@entity2).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -240,8 +240,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_sender(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -253,7 +253,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -261,7 +261,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -286,8 +286,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -299,7 +299,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -307,7 +307,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -364,7 +364,7 @@ describe "Messages And Receipts" do
       
       before do
         @receipt1 = @entity1.send_message(@recipients,"Body","Subject")
-        @message1 = @receipt1.notification
+        @message1 = @receipt1.message
       end
       
       it "should create proper message" do
@@ -376,7 +376,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity1).notification(@message1).first
+        mail = Receipt.recipient(@entity1).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -385,7 +385,7 @@ describe "Messages And Receipts" do
         end      
         #Receiver Mails
         @recipients.each do |receiver|
-          mail = Receipt.recipient(receiver).notification(@message1).first
+          mail = Receipt.recipient(receiver).message(@message1).first
           assert mail
           if mail
             mail.is_read.should==false
@@ -409,8 +409,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@recipients,"Body","Subject")
         @receipt2 = @entity2.reply_to_sender(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -422,7 +422,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -430,7 +430,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -439,7 +439,7 @@ describe "Messages And Receipts" do
         end
         
         #No Receiver, No Mail
-        mail = Receipt.recipient(@entity3).notification(@message2).first
+        mail = Receipt.recipient(@entity3).message(@message2).first
         assert mail.nil?
         
       end
@@ -461,8 +461,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@recipients,"Body","Subject")
         @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
         @recipients2 = Array.new
         @recipients2 << @entity1
         @recipients2 << @entity3
@@ -478,7 +478,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -487,7 +487,7 @@ describe "Messages And Receipts" do
         end      
         #Receiver Mails
         @recipients2.each do |receiver|
-          mail = Receipt.recipient(receiver).notification(@message2).first
+          mail = Receipt.recipient(receiver).message(@message2).first
           assert mail
           if mail
             mail.is_read.should==false
@@ -546,7 +546,7 @@ describe "Messages And Receipts" do
       
       before do
         @receipt1 = @entity1.send_message(@recipients,"Body","Subject")
-        @message1 = @receipt1.notification
+        @message1 = @receipt1.message
       end
       
       it "should create proper message" do
@@ -558,7 +558,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity1).notification(@message1).first
+        mail = Receipt.recipient(@entity1).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -567,7 +567,7 @@ describe "Messages And Receipts" do
         end      
         #Receiver Mails
         @recipients.each do |receiver|
-          mail = Receipt.recipient(receiver).notification(@message1).first
+          mail = Receipt.recipient(receiver).message(@message1).first
           assert mail
           if mail
             mail.is_read.should==false
@@ -591,8 +591,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@recipients,"Body","Subject")
         @receipt2 = @entity2.reply_to_sender(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -604,7 +604,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -612,7 +612,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -621,7 +621,7 @@ describe "Messages And Receipts" do
         end
         
         #No Receiver, No Mail
-        mail = Receipt.recipient(@entity3).notification(@message2).first
+        mail = Receipt.recipient(@entity3).message(@message2).first
         assert mail.nil?
         
       end
@@ -643,8 +643,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@recipients,"Body","Subject")
         @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
         @recipients2 = Array.new
         @recipients2 << @entity1
         @recipients2 << @entity3
@@ -660,7 +660,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -669,7 +669,7 @@ describe "Messages And Receipts" do
         end      
         #Receiver Mails
         @recipients2.each do |receiver|
-          mail = Receipt.recipient(receiver).notification(@message2).first
+          mail = Receipt.recipient(receiver).message(@message2).first
           assert mail
           if mail
             mail.is_read.should==false
@@ -725,7 +725,7 @@ describe "Messages And Receipts" do
       
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
-        @message1 = @receipt1.notification
+        @message1 = @receipt1.message
       end
       
       it "should create proper message" do
@@ -737,7 +737,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity1).notification(@message1).first
+        mail = Receipt.recipient(@entity1).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -745,7 +745,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity2).notification(@message1).first
+        mail = Receipt.recipient(@entity2).message(@message1).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -767,8 +767,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_sender(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -780,7 +780,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -788,7 +788,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -813,8 +813,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -826,7 +826,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -834,7 +834,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
@@ -858,8 +858,8 @@ describe "Messages And Receipts" do
       before do
         @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
         @receipt2 = @entity2.reply_to_conversation(@receipt1.conversation,"Reply body")
-        @message1 = @receipt1.notification
-        @message2 = @receipt2.notification
+        @message1 = @receipt1.message
+        @message2 = @receipt2.message
       end
       
       it "should create proper message" do
@@ -871,7 +871,7 @@ describe "Messages And Receipts" do
       
       it "should create proper mails" do
         #Sender Mail
-        mail = Receipt.recipient(@entity2).notification(@message2).first
+        mail = Receipt.recipient(@entity2).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==true
@@ -879,7 +879,7 @@ describe "Messages And Receipts" do
           mail.mailbox_type.should=="sentbox"
         end      
         #Receiver Mail
-        mail = Receipt.recipient(@entity1).notification(@message2).first
+        mail = Receipt.recipient(@entity1).message(@message2).first
         assert mail
         if mail
           mail.is_read.should==false
