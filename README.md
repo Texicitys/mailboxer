@@ -1,5 +1,5 @@
-I juste take the gem mailboxer and I remove the notifications. The table is now nammed messages (and not notifications). 
-I correct the spec tests too. Only 4 minors errors to corect. The gem is working.
+I juste took the gem mailboxer and I removed the notifications. The table is now nammed messages (and not notifications). 
+I corrected the spec tests too. Only 4 minors errors to corect. The gem is working.
 
 We can now send messages without subject.
 
