@@ -100,6 +100,11 @@ class Conversation < ActiveRecord::Base
   def last_message
     @last_message ||= self.messages.order('created_at DESC').first
   end
+  
+  #First message in the conversation.
+  def first_message
+    @first_message ||= self.messages.order('created_at ASC').first
+  end
 
   #Returns the receipts of the conversation for one participants
   def receipts_for(participant)
