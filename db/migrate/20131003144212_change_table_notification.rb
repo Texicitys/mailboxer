@@ -5,7 +5,6 @@ class ChangeTableNotification < ActiveRecord::Migration
     remove_column :messages, :type
     remove_column :messages, :notified_object_id
     remove_column :messages, :notified_object_type
-    remove_column :messages, :notified_object_type
     remove_column :messages, :notification_code
 
 
