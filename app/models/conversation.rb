@@ -120,7 +120,7 @@ class Conversation < ActiveRecord::Base
   def subject_to_show
     if self.subject
       self.subject
-    elsif
+    else
       truncate(self.first_message.body)
     end
   end
