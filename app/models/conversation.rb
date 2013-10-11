@@ -183,6 +183,17 @@ class Conversation < ActiveRecord::Base
     return false if participant.nil?
     self.receipts_for(participant).not_trash.is_unread.count != 0
   end
+  
+  include ActionView::Helpers::TextHelper
+
+  #Yves: Affiche soit le sujet, soit une partie du message
+  def subject_to_show
+    if self.subject.empty?
+      truncate(self.last_message.body)
+    else
+      self.subject
+    end
+  end
 
   protected
 
