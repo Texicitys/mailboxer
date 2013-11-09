@@ -1,6 +1,6 @@
 I forked the gem mailboxer and I removed the notifications. The table is now nammed "messages" (and not "notifications"). 
-I corrected the spec tests too. 
-Only 4 minors errors to correct.
+
+I adapted the spec tests too. 
 
 We can now send messages without subject.
 
@@ -44,7 +44,7 @@ Installation
 Add to your Gemfile:
 
 ```ruby
-gem 'mailboxer'
+gem 'mailboxer-without-notification'
 ```
 
 Then run:
