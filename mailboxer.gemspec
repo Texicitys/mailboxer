@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "mailboxer-without-notification"
-  s.version = "0.11.1"
+  s.version = "0.11.2"
   s.authors = ["Eduardo Casanova Cuesta", 'Yves Baumann']
   s.summary = "It is the mailboxer gem in wich I have deleted the notification system."
   s.description = "A Rails engine that allows any model to act as messageable, adding the ability to exchange messages " +
