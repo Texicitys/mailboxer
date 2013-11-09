@@ -100,6 +100,11 @@ class Conversation < ActiveRecord::Base
   def last_message
     @last_message ||= self.messages.order('created_at DESC').first
   end
+  
+  #First message in the conversation.
+  def first_message
+    @first_message ||= self.messages.order('created_at ASC').first
+  end
 
   #Returns the receipts of the conversation for one participants
   def receipts_for(participant)
@@ -109,6 +114,17 @@ class Conversation < ActiveRecord::Base
   #Returns the number of messages of the conversation
   def count_messages
     Message.conversation(self).count
+  end
+  
+  include ActionView::Helpers::TextHelper
+
+  #Return the subject if it existe, or the first words otherwise
+  def subject_to_show
+    unless self.subject.empty?
+      self.subject
+    else
+      truncate(self.first_message.body)
+    end
   end
 
   #Returns true if the messageable is a participant of the conversation
@@ -166,6 +182,17 @@ class Conversation < ActiveRecord::Base
   def is_unread?(participant)
     return false if participant.nil?
     self.receipts_for(participant).not_trash.is_unread.count != 0
+  end
+  
+  include ActionView::Helpers::TextHelper
+
+  #Yves: Affiche soit le sujet, soit une partie du message
+  def subject_to_show
+    if self.subject.empty?
+      truncate(self.last_message.body)
+    else
+      self.subject
+    end
   end
 
   protected
